@@ -59,9 +59,9 @@ interpreted as described in [RFC 2119](http://tools.ietf.org/html/rfc2119).
 could be declared in the code itself or exist strictly in documentation.
 However it is done, it should be precise and comprehensive.
 
-1. A normal version number MUST take the form X.Y.Z where X, Y, and Z are
+1. A normal version number MUST take the form X.Y or X.Y.Z where X, Y, and Z are
 non-negative integers, and MUST NOT contain leading zeroes. X is the
-major version, Y is the minor version, and Z is the patch version.
+major version, Y is the minor version, and Z is the OPTIONAL patch version.
 Each element MUST increase numerically. For instance: 1.9.0 -> 1.10.0 -> 1.11.0.
 
 1. Once a versioned package has been released, the contents of that version
@@ -77,6 +77,9 @@ changes.
 1. Patch version Z (x.y.Z | x > 0) MUST be incremented if only backwards
 compatible bug fixes are introduced. A bug fix is defined as an internal
 change that fixes incorrect behavior.
+
+1. Patch version MAY be omitted, in which cased it SHALL be considered 
+exactly equivalent to 0.
 
 1. Minor version Y (x.Y.z | x > 0) MUST be incremented if new, backwards
 compatible functionality is introduced to the public API. It MUST be
@@ -114,8 +117,9 @@ Precedence MUST be calculated by separating the version into major, minor, patch
 and pre-release identifiers in that order (Build metadata does not figure 
 into precedence). Precedence is determined by the first difference when
 comparing each of these identifiers from left to right as follows: Major, minor,
-and patch versions are always compared numerically. Example: 1.0.0 < 2.0.0 <
-2.1.0 < 2.1.1. When major, minor, and patch are equal, a pre-release version has
+and patch versions are always compared numerically. An omitted patch number is 
+equivalent to 0. Example: 1.0.0 < 2.0.0 <
+2.1 < 2.1.1. When major, minor, and patch are equal, a pre-release version has
 lower precedence than a normal version. Example: 1.0.0-alpha < 1.0.0. Precedence
 for two pre-release versions with the same major, minor, and patch version MUST
 be determined by comparing each dot separated identifier from left to right
